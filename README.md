@@ -68,7 +68,7 @@ This repository is already compatible with GitHub Pages as a static site.
 
 Your site will be published at:
 
-- `https://<your-username>.github.io/<repo-name>/`
+- `[https://<your-username>.github.io/<repo-name>/](https://isottongloria.github.io/soke-video-gallery/)`
 
 ### Option B (GitHub Actions)
 
