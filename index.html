@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>From Text to Sign: The State of Multilingual Sign Language Production</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f7f9fc;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #4b5563;
+        --primary: #2563eb;
+        --accent: #14b8a6;
+        --shadow: 0 10px 24px rgba(31, 41, 55, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Lexend", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+        background: linear-gradient(180deg, #eef4ff 0%, var(--bg) 40%);
+        color: var(--text);
+        line-height: 1.5;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 2rem 1rem 3rem;
+      }
+
+      header {
+        margin-bottom: 2rem;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(1.4rem, 3vw, 2.4rem);
+        line-height: 1.2;
+      }
+
+      .subtitle {
+        margin-top: 0.65rem;
+        color: var(--muted);
+        font-size: clamp(0.95rem, 2vw, 1.15rem);
+      }
+
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1rem;
+      }
+
+      .video-card {
+        background: var(--card);
+        border: 1px solid #e5e7eb;
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .video-card h2 {
+        font-size: 1rem;
+        margin: 0;
+        padding: 0.9rem 1rem;
+        background: linear-gradient(90deg, rgba(37, 99, 235, 0.1), rgba(20, 184, 166, 0.1));
+        border-bottom: 1px solid #e5e7eb;
+      }
+
+      video {
+        display: block;
+        width: 100%;
+        height: auto;
+        background: #111827;
+      }
+
+      footer {
+        margin-top: 2rem;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 420px) {
+        .container {
+          padding-inline: 0.75rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <h1>From Text to Sign: The State of Multilingual Sign Language Production</h1>
+        <p class="subtitle">
+          Visualizing SOKE-based generation across ASL, DGS, and Chinese Sign Language
+        </p>
+      </header>
+
+      <section class="gallery" aria-label="Video gallery">
+        <article class="video-card">
+          <h2>ASL Demo</h2>
+          <video controls preload="metadata">
+            <source src="public/videos/asl-demo.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </article>
+
+        <article class="video-card">
+          <h2>DGS Demo</h2>
+          <video controls preload="metadata">
+            <source src="public/videos/dgs-demo.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </article>
+
+        <article class="video-card">
+          <h2>Chinese Sign Language Demo</h2>
+          <video controls preload="metadata">
+            <source src="public/videos/csl-demo.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </article>
+      </section>
+
+      <footer>
+        Tip: replace files in <code>public/videos/</code> and update card titles in
+        <code>index.html</code>.
+      </footer>
+    </main>
+  </body>
+</html>
