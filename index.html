@@ -55,6 +55,17 @@
         font-size: clamp(0.95rem, 2vw, 1.15rem);
       }
 
+      .section-title {
+        margin: 2rem 0 0.8rem;
+        font-size: clamp(1.1rem, 2vw, 1.5rem);
+      }
+
+      .section-subtitle {
+        margin: 0.35rem 0 1rem;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
       .gallery {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -102,11 +113,12 @@
       <header>
         <h1>From Text to Sign: The State of Multilingual Sign Language Production</h1>
         <p class="subtitle">
-          Visualizing SOKE-based generation across ASL, DGS, and Chinese Sign Language
+          Visualizing SOKE-based generation across ASL, DGS, Chinese Sign Language, and Phoenix
         </p>
       </header>
 
-      <section class="gallery" aria-label="Video gallery">
+      <h2 class="section-title">Demo Videos</h2>
+      <section class="gallery" aria-label="Demo video gallery">
         <article class="video-card">
           <h2>ASL Demo</h2>
           <video controls preload="metadata">
@@ -132,10 +144,80 @@
         </article>
       </section>
 
+      <h2 class="section-title">Phoenix Videos</h2>
+      <p class="section-subtitle">Neatly split into train and test sets.</p>
+
+      <h3 class="section-title">Train Set</h3>
+      <section class="gallery" aria-label="Phoenix train videos" id="phoenix-train-gallery"></section>
+
+      <h3 class="section-title">Test Set</h3>
+      <section class="gallery" aria-label="Phoenix test videos" id="phoenix-test-gallery"></section>
+
       <footer>
         Tip: replace files in <code>public/videos/</code> and update card titles in
         <code>index.html</code>.
       </footer>
     </main>
+
+    <script>
+      const phoenixTrainVideos = [
+        '0000_11August_2010_Wednesday_tagesschau-5.mp4',
+        '0001_25October_2010_Monday_tagesschau-20.mp4',
+        '0002_11August_2010_Wednesday_tagesschau-11.mp4',
+        '0003_05May_2011_Thursday_tagesschau-26.mp4',
+        '0004_11August_2010_Wednesday_tagesschau-1.mp4',
+        '0005_25October_2010_Monday_tagesschau-15.mp4',
+        '0006_11August_2010_Wednesday_tagesschau-10.mp4',
+        '0007_11August_2010_Wednesday_tagesschau-12.mp4',
+        '0008_25October_2010_Monday_tagesschau-16.mp4',
+      ];
+
+      const phoenixTestVideos = [
+        '0000_14October_2010_Thursday_tagesschau-294.mp4',
+        '0001_29April_2010_Thursday_heute-8626.mp4',
+        '0002_29August_2009_Saturday_tagesschau-5018.mp4',
+        '0003_14December_2009_Monday_tagesschau-2088.mp4',
+        '0004_26July_2010_Monday_tagesschau-6268.mp4',
+        '0005_31January_2011_Monday_tagesschau-668.mp4',
+        '0006_10December_2009_Thursday_heute-7945.mp4',
+        '0007_01April_2010_Thursday_tagesschau-4332.mp4',
+        '0008_28February_2011_Monday_tagesschau-4988.mp4',
+        '0009_05October_2010_Tuesday_heute-1218.mp4',
+        '0010_28July_2010_Wednesday_tagesschau-872.mp4',
+        '0011_03July_2009_Friday_tagesschau-2014.mp4',
+      ];
+
+      const createVideoCard = (title, path) => {
+        const card = document.createElement('article');
+        card.className = 'video-card';
+
+        const heading = document.createElement('h2');
+        heading.textContent = title;
+
+        const video = document.createElement('video');
+        video.controls = true;
+        video.preload = 'metadata';
+
+        const source = document.createElement('source');
+        source.src = path;
+        source.type = 'video/mp4';
+
+        video.append(source);
+        card.append(heading, video);
+
+        return card;
+      };
+
+      const renderSplit = (targetId, splitName, files) => {
+        const gallery = document.getElementById(targetId);
+        files.forEach((fileName) => {
+          const path = `public/videos/phoenix/${splitName}/${fileName}`;
+          gallery.append(createVideoCard(`Phoenix ${splitName.toUpperCase()} · ${fileName}`, path));
+        });
+      };
+
+      renderSplit('phoenix-train-gallery', 'train', phoenixTrainVideos);
+      renderSplit('phoenix-test-gallery', 'test', phoenixTestVideos);
+    </script>
   </body>
 </html>
