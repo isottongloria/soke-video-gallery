@@ -95,6 +95,27 @@
         background: #111827;
       }
 
+      .info-card {
+        background: var(--card);
+        border: 1px solid #e5e7eb;
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+        padding: 1rem 1.1rem;
+      }
+
+      .info-card p {
+        margin: 0.65rem 0;
+      }
+
+      .info-card ol {
+        margin: 0.6rem 0 0.2rem 1.2rem;
+        padding: 0;
+      }
+
+      .info-card li {
+        margin: 0.45rem 0;
+      }
+
       footer {
         margin-top: 2rem;
         color: var(--muted);
@@ -117,30 +138,45 @@
         </p>
       </header>
 
-      <h2 class="section-title">Demo Videos</h2>
-      <section class="gallery" aria-label="Demo video gallery">
-        <article class="video-card">
-          <h2>ASL Demo</h2>
-          <video controls autoplay muted playsinline preload="metadata">
-            <source src="public/videos/asl-demo.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </article>
-
-        <article class="video-card">
-          <h2>DGS Demo</h2>
-          <video controls autoplay muted playsinline preload="metadata">
-            <source src="public/videos/dgs-demo.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </article>
-
-        <article class="video-card">
-          <h2>Chinese Sign Language Demo</h2>
-          <video controls autoplay muted playsinline preload="metadata">
-            <source src="public/videos/csl-demo.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+      <h2 class="section-title">What is SOKE?</h2>
+      <section aria-label="General explanation of the SOKE model">
+        <article class="info-card">
+          <p>
+            SOKE is a model for sign language production: it takes written text and generates 3D
+            sign-language avatar motion. It is presented in an ICCV 2025 paper.
+          </p>
+          <p>
+            Most text-to-sign systems treat sign generation as a visual animation task. SOKE treats
+            it more like language modeling: similar to how an LLM predicts text tokens, SOKE
+            predicts sign motion tokens. The core idea is that sign languages have linguistic
+            structure, so motion can be converted into token sequences and generated
+            autoregressively.
+          </p>
+          <p><strong>Architecture (3 main components)</strong></p>
+          <ol>
+            <li>
+              <strong>Decoupled Tokenizer (DETO):</strong> three separate VQ-VAE tokenizers are
+              used for upper body, left hand, and right hand, so simultaneous linguistic cues are
+              modeled more effectively.
+            </li>
+            <li>
+              <strong>Autoregressive Multilingual Generator (AMG):</strong> after tokenization,
+              sign tokens are integrated with text vocabulary and a pretrained multilingual language
+              model is fine-tuned (mBART-large-cc25 in the paper/repo).
+            </li>
+            <li>
+              <strong>Multi-head decoding:</strong> instead of flattening all body-part tokens into
+              one long sequence, SOKE predicts upper-body, left-hand, and right-hand tokens
+              simultaneously at each time step with separate heads while still fusing cross-part
+              information.
+            </li>
+          </ol>
+          <p>
+            <strong>Retrieval enhancement:</strong> SOKE also uses external sign dictionaries. For
+            words found in the dictionary, it retrieves word-level sign examples, converts them
+            into motion tokens, and provides them as extra context to the language model. This is
+            RAG-like, but it retrieves sign motion examples instead of documents.
+          </p>
         </article>
       </section>
 
