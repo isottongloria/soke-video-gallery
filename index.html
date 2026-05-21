@@ -121,7 +121,7 @@
       <section class="gallery" aria-label="Demo video gallery">
         <article class="video-card">
           <h2>ASL Demo</h2>
-          <video controls preload="metadata">
+          <video controls autoplay muted playsinline preload="metadata">
             <source src="public/videos/asl-demo.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
@@ -129,7 +129,7 @@
 
         <article class="video-card">
           <h2>DGS Demo</h2>
-          <video controls preload="metadata">
+          <video controls autoplay muted playsinline preload="metadata">
             <source src="public/videos/dgs-demo.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
@@ -137,7 +137,7 @@
 
         <article class="video-card">
           <h2>Chinese Sign Language Demo</h2>
-          <video controls preload="metadata">
+          <video controls autoplay muted playsinline preload="metadata">
             <source src="public/videos/csl-demo.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
@@ -196,6 +196,9 @@
 
         const video = document.createElement('video');
         video.controls = true;
+        video.autoplay = true;
+        video.muted = true;
+        video.playsInline = true;
         video.preload = 'metadata';
 
         const source = document.createElement('source');
